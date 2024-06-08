@@ -41,7 +41,7 @@ export const getOrders = async (req, res) => {
           include: {
             model: Product,
             as: 'Product',
-            attributes: ['name', 'price'],
+            attributes: ['id', 'name', 'price'],
           },
         },
       ],
