@@ -10,7 +10,7 @@ export const formatOrder = (order) => {
   return {
     id: order.id,
     orderNo: order.orderNo,
-    date: order.date.toLocaleDateString(),
+    date: order.date,
     productsNo: order.productsNo,
     finalPrice: order.finalPrice,
     selectedProducts,

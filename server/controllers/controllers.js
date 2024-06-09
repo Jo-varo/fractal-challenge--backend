@@ -113,6 +113,7 @@ export const editOrder = async (req, res) => {
         // Si el producto no está en la orden, crea una nueva relación Order-Product
         await ProductOrder.create({
           productId: selectedProductInBody.id,
+          orderId: id,
           quantity: selectedProductInBody.quantity,
           totalPrice: selectedProductInBody.totalPrice,
         });
@@ -128,7 +129,7 @@ export const editOrder = async (req, res) => {
         finalPrice: body.finalPrice,
       });
     } else {
-      throw new Error('No se encontró la orden con el ID proporcionado.');
+      throw new Error('The order with the provided ID was not found.');
     }
 
     return res.json({
@@ -162,7 +163,7 @@ export const deleteOrder = async (req, res) => {
         message: 'Succesful deleted',
       });
     } else {
-      throw new Error('No se encontró la orden con el ID proporcionado.');
+      throw new Error('The order with the provided ID was not found.');
     }
   } catch (error) {
     return res.status(500).json({ message: error.message });
