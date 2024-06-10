@@ -97,6 +97,16 @@ export const editOrder = async (req, res) => {
       where: { orderId: id },
     });
 
+    for (const productInOrder of productsInOrder) {
+      // Verifica si cada producto de la orden en la base de datos está en la petición
+      const isProductInDB = body.selectedProducts.some(
+        (selectedProductInBody) =>
+          selectedProductInBody.id === productInOrder.productId
+      );
+      // Si el producto no está en la petición se elimina en la base de datos
+      if (!isProductInDB) productInOrder.destroy();
+    }
+
     for (const selectedProductInBody of body.selectedProducts) {
       // Busca si el producto seleccionado está en la lista de productos de la orden
       let productInOrder = productsInOrder.find(
