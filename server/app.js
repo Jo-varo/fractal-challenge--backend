@@ -3,7 +3,6 @@ import morgan from 'morgan';
 import cors from 'cors';
 import routes from './routes/routes.js';
 import sequelize from './db.js';
-import { Order, Product, ProductOrder } from './models/models.js';
 
 const app = express();
 
